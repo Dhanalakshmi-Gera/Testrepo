@@ -37,7 +37,7 @@ public class SupplyController {
 		if(value !=null) {
 			Supply s = (Supply)value;
 			LocalDateTime supDate =LocalDateTime.ofInstant(s.getUpdateTimeStamp().toInstant(), ZoneId.systemDefault());
-			if(LocalDateTime.parse((String)hashMap.get("updateTimeStamp")).isBefore(supDate)) {
+			if(LocalDateTime.parse((String)hashMap.get("updateTimeStamp"),DateTimeFormatter.ISO_DATE_TIME).isBefore(supDate)) {
 				return "{\"productId\":\""+hashMap.get("productId")+"\",\"updateTimeStamp\":\""+s.getUpdateTimeStamp()+"\",\"quantity\":"+s.getQuantity()+",\r\n" + 
 						"\"status\": \"Out Of Sync Update\"}";
 			} else {
